@@ -1,0 +1,4 @@
+﻿  laba 5.c
+C:\Users\Александр\source\repos\laba 5\laba 5.c(71,41): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\Александр\source\repos\laba 5\laba 5.c(229,11): warning C4244: функция: преобразование "time_t" в "unsigned int", возможна потеря данных
+  laba 5.vcxproj -> C:\Users\Александр\source\repos\laba 5\x64\Debug\laba 5.exe
