@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include <string.h>
 
 // Функция, которая находит самую длинную последовательность повторяющихся символов из файла
 void find_longest_repeating_sequence_in_file(const char* filename, char* result, int* length) {
@@ -85,9 +84,11 @@ void replace_words_with_spaces(const char* filename, int count) {
     int word_length = 0;
 
     while (*end != '\0') {
-        if (*end == ' ' || *end == '\n' || *end == '\t' || *end == '\r') {
+        if (*end == ' ' || *end == '\n' ) {
             if (word_length == count) {
-                memset(start, ' ', word_length);
+                for (char* ptr = start; ptr < start + word_length; ptr++) {
+                    *ptr = ' ';
+                }
             }
             word_length = 0;
             end++;
@@ -101,7 +102,9 @@ void replace_words_with_spaces(const char* filename, int count) {
 
     // Проверка последнего слова в файле
     if (word_length == count) {
-        memset(start, ' ', word_length);
+        for (char* ptr = start; ptr < start + word_length; ptr++) {
+            *ptr = ' ';
+        }
     }
 
     fwrite(content, 1, size, fp);
@@ -202,7 +205,6 @@ int main(int argc, char* argv[]) {
     replace_words_with_spaces(filename, count);
 
     // Чтение и вывод содержимого файла после замены слов на пробелы
-     
     printf("\nСодержимое файла %s:\n", filename);
     file = fopen(filename, "rt");
     if (file == NULL) {
@@ -210,7 +212,6 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    
     fseek(file, 0, SEEK_END);
     size = ftell(file); // Получение размера файла
     rewind(file);       // Возврат указателя файла в начало
@@ -221,6 +222,6 @@ int main(int argc, char* argv[]) {
         putchar(ch);
     }
     fclose(file);
-    
+
     return 0;
 }
